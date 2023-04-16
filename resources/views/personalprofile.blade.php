@@ -27,7 +27,7 @@
                               <input class="form-control" name="city" type="text" value="{{$user->city}}"/>
                               <label>City</label>
                         </div>
-                        <p class="text-danger mb-0">*enter your password to edit</p>
+                        <p class="text-danger mb-0">*enter your password to update profile</p>
                         <div class="form-floating mb-3">
                               <input class="form-control" name="password" type="password" value="" required/>
                               <label>Password</label>
@@ -52,10 +52,9 @@
                               <thead class="bg-light">
                                 <tr>
                                   <th>Name</th>
-                                  <th>Email</th>
+                                  <th>City</th>
                                   <th>Hire day</th>
                                   <th>Hire time</th>
-                                 
                                   <th class="text-center">Actions</th>
                                 </tr>
                               </thead>
@@ -68,11 +67,11 @@
                                       <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" style="width: 45px; height: 45px" class="rounded-circle"/>
                                       <div class="ms-3">
                                         <p class="fw-bold mb-1">{{$hire->user_client->fullname}}</p>
-                                        <p class=" mb-1">{{$hire->created_at->diffforhumans()}}</p>
+                                        <!-- <p class=" mb-1">{{$hire->created_at->diffforhumans()}}</p> -->
                                       </div>
                                     </div>
                                   </td>
-                                  <td>{{$hire->user_client->email}}</td>
+                                  <td>{{$hire->user_client->city}}</td>
                                   <td>
                                     <p class="fw-normal mb-1">{{$hire->hire_day}}</p>
                                   </td>
@@ -81,9 +80,9 @@
                                   </td>
                                   
                                   <td class="text-center">
-                                    @if($hire->user_client->hire_status == "rejected")
+                                    @if($hire->hire_status == "rejected")
                                       <span class="badge badge-danger rounded-pill d-inline">Refused</span>
-                                    @elseif($hire->user_client->hire_status == "accepted")
+                                    @elseif($hire->hire_status == "accepted")
                                       <span class="badge badge-success rounded-pill d-inline">accepted</span>
                                     @else
                                     <a href="{{ url('accept/'.$hire->id) }}" class="btn btn-link btn-sm btn-rounded text-success">
@@ -93,7 +92,6 @@
                                       <i class="bi bi-x-lg"></i>Reject
                                     </a>
                                     @endif
-                                    
                                   </td>
                                 </tr>
                                 @endforeach

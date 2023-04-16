@@ -18,6 +18,7 @@ class UsersController extends Controller
             'fullname' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required|min:6',
+            'price' => 'required',
             'phone_number' => 'required',
             'speciality' => 'required',
             'city' => 'required',
@@ -43,6 +44,7 @@ class UsersController extends Controller
             'phone_number' => $data['phone_number'],
             'speciality' => $data['speciality'],
             'city' => $data['city'],
+            'price' => $data['price'],
             // 'profile_picture' => $data['profile_picture'],
             'password' => Hash::make($data['password']),
             'role' => 2,
@@ -98,13 +100,16 @@ class UsersController extends Controller
     public function client_profile(){
         $user = Auth::User();
         $hires = Hires::where('id_client',$user->id)->get();
+        
         return view('clientprofile',['hires'=>$hires]);
     }
 
 
     public function repairman_profile($id){
+        $client = Auth::User();
         $repairman = User::find($id);
-        return view('repairprofile',['repairman'=>$repairman]);   
+        $hires = Hires::where('id_client', $client->id)->where('id_repairman' , $id)->get();
+       return view('repairprofile',['repairman'=>$repairman,'hires'=>$hires]);   
     }
 
 

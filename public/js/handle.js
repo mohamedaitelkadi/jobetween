@@ -10,7 +10,32 @@ let search = document.querySelector('.search');
 let clear = document.querySelector('.clear');
 let user_city = document.querySelectorAll('.user_city');
 let user_speciality = document.querySelectorAll('.user_speciality');
+let repairadio1 = document.querySelector('.repairadio1');
+let repairadio2 = document.querySelector('.repairadio2');
+let wage = document.querySelector('.wage');
+let special = document.querySelector('.special');
 
+repairadio2.addEventListener('change',hide)
+function hide(){
+    if(repairadio2.checked){
+        wage.style.display = "none"
+        special.style.display = "none"
+    }
+}
+
+repairadio1.addEventListener('change',show)
+function show(){
+    if(repairadio1.checked){
+        wage.style.display = ""
+        special.style.display = ""
+    }
+}
+
+// for(let i = 0; i < icon.length; i++) {
+//     icon[i].addEventListener("click", function(e) {
+//             icon[i].classList.add("bi bi-grid-fill")
+//     })
+// }
 
 for(let i = 0; i < opt.length; i++) {
     opt[i].addEventListener("click", function(e) {
@@ -21,11 +46,6 @@ for(let i = 0; i < opt.length; i++) {
     })
 }
 
-// for(let i = 0; i < icon.length; i++) {
-//     icon[i].addEventListener("click", function(e) {
-//             icon[i].classList.add("bi bi-grid-fill")
-//     })
-// }
 
 // Set min attribute to today's date
   var today = new Date().toISOString().split('T')[0];
@@ -40,7 +60,7 @@ for(let i=0;i<hire_btn.length;i++){
   }
   
 
-// search
+//search
 search.addEventListener('click',searching)
 function searching(){
 

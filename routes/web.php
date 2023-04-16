@@ -27,6 +27,7 @@ Route::post ("login",[UsersController::class ,'signin']);
 Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('admin', [UsersController::class, 'dashboard']);
     Route::post ("addSpeciality",[SpecialitiesController::class ,'store']);
+    Route::get ("deletes/{id}",[SpecialitiesController::class ,'delete']);
 });
 
 Route::middleware(['auth', 'Client'])->group(function () {
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'Client'])->group(function () {
     Route::get ("hire",[HiresController::class ,'index']);
     Route::post ("store",[HiresController::class ,'store']);
     Route::get ("profileC",[UsersController::class ,'client_profile']);
+    Route::get ("cancel/{id}",[HiresController::class ,'cancel']);
 });
 
 Route::middleware(['auth', 'Repairman'])->group(function () {

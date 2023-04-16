@@ -16,6 +16,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     </head>
     <body>
+         <!-- navbar  -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
                 @guest
@@ -29,16 +30,9 @@
                     @endif
                 </a>
                 @endguest
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="bi-list"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url('/') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url('hire') }}">Hiring</a></li>
-                    </ul>
+                   
                     @guest
+                    <div>
                     <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0 mx-3" data-bs-toggle="modal" data-bs-target="#loginModal">
                         <span class="d-flex align-items-center">
                             <i class="bi-box-arrow-in-right me-2"></i>
@@ -51,7 +45,20 @@
                             <span class="small">signup</span>
                         </span>
                     </button>
+                    </div>
                     @else
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                        <i class="bi-list"></i>
+                    </button>
+                     <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url('/') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="">Community</a></li>
+                        @if( auth()->user()->role == 1 )
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url('hire') }}">Hiring</a></li>
+                        @endif
+                    </ul>
                     <!-- Right elements -->
                     <div class="d-flex align-items-center">
                         
@@ -137,11 +144,11 @@
                             @csrf 
                             <div class="d-flex justify-content-around mb-3"> 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="usertype" value="client" id="Client" checked/>
+                                    <input class="repairadio2 form-check-input" type="radio" name="usertype" value="client" id="Client" checked />
                                     <label class="form-check-label" for="Client">Client</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="usertype" value="repairman" id="Repairman" />
+                                    <input class="repairadio1 form-check-input" type="radio" name="usertype" value="repairman" id="Repairman" />
                                     <label class="form-check-label" for="Repairman">Repairman</label>
                                 </div>
                             </div>
@@ -164,7 +171,6 @@
                             <div class="mb-3">
                             <select name="city" class="form-select">
                                 <option value="" selected>Select a city</option>
-                                <option value="">Select a city</option>
                                 <option value="rabat">rabat</option>
                                 <option value="fes">fes</option>
                                 <option value="agadir">agadir</option>
@@ -175,7 +181,11 @@
                                 <option value="safi">safi</option>
                             </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="wage form-floating mb-3" style="display:none">
+                                <input class="form-control" name="price" type="number"/>
+                                <label>Price/h</label>
+                            </div>
+                            <div class="special mb-3 " style="display:none">
                                 <select name="speciality" class="form-control">
                                 <option value="">chooose...</option>
                                 <option value="Plumbing">Plumbing</option>
@@ -199,19 +209,19 @@
         @yield('content')
 
         <!-- Footer-->
-        <footer class="bg-black text-center py-5">
-                    <div class="container px-5">
-                        <div class="text-white-50 small">
-                            <div class="mb-2">&copy; Jobetween 2022. All Rights Reserved.</div>
-                            <a href="#!">Privacy</a>
-                            <span class="mx-1">&middot;</span>
-                            <a href="#!">Terms</a>
-                            <span class="mx-1">&middot;</span>
-                            <a href="#!">FAQ</a>
-                        </div>
-                    </div>
-                </footer>
-                <script src="js/script.js"></script>
+        <footer class="bg-black text-center py-5" style="z-index:-99">
+            <div class="container px-5">
+                <div class="text-white-50 small">
+                    <div class="mb-2">&copy; Jobetween 2022. All Rights Reserved.</div>
+                    <a href="#!">Privacy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a href="#!">Terms</a>
+                    <span class="mx-1">&middot;</span>
+                    <a href="#!">FAQ</a>
+                </div>
+            </div>
+        </footer>
+                <script src="js/handle.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>

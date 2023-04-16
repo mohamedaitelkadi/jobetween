@@ -1,47 +1,58 @@
 @extends('navbar')
 @section('content')
-<div class="row justify-content-center w-100" style="padding-top:90px">
-            <div  class="row gy-2 gx-3 align-items-center justify-content-evenly" style="width:70%">
-            <div class="col">
-              <select  class="city form-select">
-                <option value="">Select a city</option>
-                <option value="rabat">rabat</option>
-                <option value="fes">fes</option>
-                <option value="agadir">agadir</option>
-                <option value="laayoune">laayoune</option>
-                <option value="marrakesh">marrakesh</option>
-                <option value="casablanca">casablanca</option>
-                <option value="tanger">tanger</option>
-                <option value="safi">safi</option>
-              </select>
-            </div>
-            <div class="col">
-                <select  class="speciality form-select">
-                  <option value="" selected>Select a speciality</option>
-                  @foreach($specialities as $speciality)
-                  <option value="{{$speciality->name_speciality}}">{{$speciality->name_speciality}}</option>
-                  @endforeach
+<div class="row justify-content-center w-100" style="padding-top:90px;">
+          <div  class="row gy-2 gx-3 align-items-center justify-content-evenly" style="width:70%">
+              <div class="col">
+                <select  class="city form-select">
+                  <option value="">Select a city</option>
+                  <option value="rabat">rabat</option>
+                  <option value="fes">fes</option>
+                  <option value="agadir">agadir</option>
+                  <option value="laayoune">laayoune</option>
+                  <option value="marrakesh">marrakesh</option>
+                  <option value="casablanca">casablanca</option>
+                  <option value="tanger">tanger</option>
+                  <option value="safi">safi</option>
                 </select>
               </div>
-            <div class="col-auto">
-              <button class="search btn btn-primary">search</button>
-              <button class="clear btn btn-primary">clear</button>
-            </div>
-            </div>
-        </div>
-        <div class="container" style="padding-top:100px;">
-          <div class="row">
-            @foreach($repairmen as $repairman)
-              <div class="col-lg-4 mb-3">
+              <div class="col">
+                  <select  class="speciality form-select">
+                    <option value="" selected>Select a speciality</option>
+                    @foreach($specialities as $speciality)
+                    <option value="{{$speciality->name_speciality}}">{{$speciality->name_speciality}}</option>
+                    @endforeach
+                  </select>
+              </div>
+              <div class="col-auto">
+                <button class="search btn btn-primary">search</button>
+                <button class="clear btn btn-primary">clear</button>
+              </div>
+          </div>
+        
+          <div class="container" style="padding-top:100px;">
+            <div class="row">
+              @foreach($repairmen as $repairman)
+                <div class="col-lg-4 mb-3">
                   <div class="card m-b-30">
                       <div class="card-body">
                           <div class="media">
-                              <img class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg" src="https://plumberoftucson.com/wp-content/uploads/2017/03/Image-of-Don-Profile.png" alt="Generic placeholder image" />
+                              <a href="{{url('repairmanprofile/'.$repairman->id)}}"><img class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg" src="https://plumberoftucson.com/wp-content/uploads/2017/03/Image-of-Don-Profile.png"/></a>
                               <div class="media-body">
                                   <h5 class="mt-0 font-18 mb-1">{{$repairman->fullname}}</h5>
-                                  <p class="user_speciality text-muted font-14">{{$repairman->speciality}}</p>
-                                  <p class="user_city text-muted font-14">{{$repairman->city}}</p>
-                                  <button id="{{$repairman->id}}" class="hire_btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#hiringModal">hire Now</button>
+                                  <p class="user_speciality text-muted mb-0 font-14">{{$repairman->speciality}}</p>
+                                  <p class="user_city text-muted mb-0 font-14">{{$repairman->city}}</p>
+                                  <p class="text-muted font-14">{{$repairman->price}} Dh/h</p>
+                                  <?php $flag = false; ?>
+                                  @foreach($hires as $hire)
+                                    @if($hire->id_repairman == $repairman->id)
+                                      <button class="hire_btn btn btn-link text-success disabled"><i class="bi bi-check-lg"></i> hired</button>
+                                      <?php $flag = true; ?>
+                                      @break
+                                    @endif
+                                  @endforeach
+                                  @if(!$flag)
+                                    <button id="{{$repairman->id}}" class="hire_btn btn btn-link" data-bs-toggle="modal" data-bs-target="#hiringModal">hire now</button>
+                                  @endif
                                   <a href="{{url('repairmanprofile/'.$repairman->id)}}" class="btn btn-primary">profile</a>
                               </div>
                           </div>

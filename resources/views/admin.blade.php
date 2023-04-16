@@ -36,7 +36,7 @@
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">3,243</h2>
+                                                        <h2 class="d-flex align-items-center mb-0">{{$clients->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,7 +51,7 @@
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">15.07</h2>
+                                                        <h2 class="d-flex align-items-center mb-0">{{$repairmen->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,7 +66,7 @@
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">578</h2>
+                                                        <h2 class="d-flex align-items-center mb-0">{{$hires->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">11.61</h2>
+                                                        <h2 class="d-flex align-items-center mb-0">{{$specialities->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,7 +117,7 @@
                                             <p class="fw-bold mb-1">{{$hire->user_client->fullname}}</p>
                                             </td>
                                             <td>
-                                            <span class="badge badge-success rounded-pill d-inline">{{$hire->user_client->hire_status}}</span>
+                                            <span class="badge badge-success rounded-pill d-inline">{{$hire->hire_status}}</span>
                                             </td>
                                             <td>{{$hire->hire_day}}</td>
                                             <td>
@@ -141,8 +141,8 @@
                                     <thead class="bg-light">
                                     <tr>
                                         <th>Name</th>
-                                        <th>email</th>
-                                        <th>Status</th>
+                                        <th>Email</th>
+                                        <th>City</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -162,7 +162,7 @@
                                             
                                         </td>
                                         <td>
-                                            <span class="badge badge-success rounded-pill d-inline">{{$client->hire_status}}</span>
+                                            <p class="text-muted mb-0">{{$client->city}}</p>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-link btn-sm btn-rounded text-danger">Delete</button>
@@ -256,8 +256,7 @@
                                         </div>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-link btn-sm btn-rounded text-danger">Delete</button>
-                                            <button type="button" class="btn btn-link btn-sm btn-rounded text-primary">Edit</button>
+                                            <a href="{{ url('deletes/'.$speciality->id)}}" class="btn btn-link btn-sm btn-rounded text-danger">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

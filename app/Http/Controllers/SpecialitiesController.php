@@ -13,4 +13,9 @@ class SpecialitiesController extends Controller
         $speciality->save();
         return redirect('admin');
     }
+    public function delete($id){
+        $speciality = Specialities::find($id);
+        $speciality->delete();
+        return redirect('admin');
+    }
 }

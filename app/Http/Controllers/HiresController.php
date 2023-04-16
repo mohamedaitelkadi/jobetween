@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class HiresController extends Controller
 {
     public function index(){
+        $client= Auth::User();
         $repairmen = User::where('role',2)->get();
+        $hires = Hires::where('id_client',$client->id)->get();
+        
         $specialities = Specialities::all();
-        return view('hire',['repairmen'=>$repairmen,'specialities'=>$specialities ]);
+        return view('hire',['repairmen'=>$repairmen,'specialities'=>$specialities,'hires'=>$hires]);
     }
 
     public function store(Request $request){
@@ -22,6 +25,7 @@ class HiresController extends Controller
         $hire->id_repairman = $request->id_repairman;
         $hire->hire_day = $request->day;
         $hire->hire_time = $request->time;
+        $hire->hire_status = "waiting";
         $hire->save();
         return redirect('hire');
     }
@@ -39,5 +43,11 @@ class HiresController extends Controller
         $hire->hire_status = "rejected";
         $hire->save();
         return redirect('profileR');
+    }
+
+    public function cancel($id){
+        $hire = Hires::find($id);
+        $hire->delete();
+        return redirect('profileC');
     }
 }

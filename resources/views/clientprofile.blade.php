@@ -6,9 +6,10 @@
             <thead class="bg-light">
               <tr>
                 <th>Repairman</th>
-                <th>Title</th>
+                <th>Hire date</th>
+                <th>Service</th>
+                <th>City</th>
                 <th>Status</th>
-                <th>Position</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -34,17 +35,11 @@
                 </td>
                  <td>{{$hire->user_repairman->city}}</td>
                 <td>
-                  <span class="badge badge-warning rounded-pill d-inline">{{$hire->user_client->hire_status}}</span>
+                  <span class="badge @if($hire->hire_status == 'accepted') badge-success @elseif($hire->hire_status == 'rejected') badge-danger @else badge-warning @endif rounded-pill d-inline">{{$hire->hire_status}}</span>
                 </td>
                
                 <td>
-                  <button
-                          type="button"
-                          class="btn btn-link btn-rounded btn-sm fw-bold"
-                          data-mdb-ripple-color="dark"
-                          >
-                    Edit
-                  </button>
+                  <a href="{{url('cancel/'.$hire->id)}}" class="btn btn-link text-danger btn-rounded btn-sm fw-bold">Cancel</a>
                 </td>
               </tr>
               @endforeach

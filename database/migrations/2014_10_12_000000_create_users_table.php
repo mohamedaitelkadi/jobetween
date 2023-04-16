@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('phone_number');
             $table->string('profile_picture');
-            // $table->string('hire_status');
+            $table->float('price');
             $table->string('speciality');
             $table->string('city');
             //admin = 0 / client = 1 / repairman = 2
