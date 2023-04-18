@@ -25,7 +25,7 @@ class AdminMW
                 return redirect('/')->with('message', 'Only admins have access !!');
             }
         } else {
-            return redirect('login')->with('message', 'You need to login');
+            return redirect('/')->with('message', 'You need to login');
         }
     }
 }

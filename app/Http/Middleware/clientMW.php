@@ -25,7 +25,7 @@ class clientMW
                 return redirect('/')->with('message', 'you don`t have the acess to this page');
             }
         } else {
-            return redirect('login')->with('message', 'You need to login');
+            return redirect('/')->with('message', 'You need to login');
         }
     }
 }

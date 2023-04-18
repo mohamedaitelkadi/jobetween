@@ -18,10 +18,11 @@ use App\Http\Controllers\SpecialitiesController;
 */
 
 
-Route::get ("/",[HomeController::class ,'home']);
+Route::get ("/",[HomeController::class ,'home'])->name('home');
 Route::get ("signout",[UsersController::class ,'signout']);
 Route::post ("register",[UsersController::class ,'signup']);
 Route::post ("login",[UsersController::class ,'signin']);
+Route::get ("community",[UsersController::class ,'community']);
 
 
 Route::middleware(['auth', 'Admin'])->group(function () {

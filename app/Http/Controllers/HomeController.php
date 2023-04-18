@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Auth;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Auth;
+use App\Models\Specialities;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('home');
+        $specialities = Specialities::all();
+        return view('home',['specialities'=>$specialities]);
     }
 }

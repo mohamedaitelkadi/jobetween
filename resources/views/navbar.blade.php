@@ -9,15 +9,19 @@
         <title>Jobetween</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/profile.css" rel="stylesheet" />
-        <link href="css/admin.css" rel="stylesheet" />
+        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/profile.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/admin.css')}}" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
     </head>
+    
     <body>
+        <style>
+        
+        </style>
          <!-- navbar  -->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+        <nav class="navbar navbar-expand-lg fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
                 @guest
                 <a class="navbar-brand fw-bold" href="{{ url('/') }}">JoBetween<p class="h6 fw-light">guest</p></a>
@@ -33,16 +37,14 @@
                    
                     @guest
                     <div>
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0 mx-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <button class="btn rounded-pill px-3 mb-2 mb-lg-0 mx-3" data-bs-toggle="modal" data-bs-target="#loginModal">
                         <span class="d-flex align-items-center">
-                            <i class="bi-box-arrow-in-right me-2"></i>
-                            <span class="small">Login</span>
+                            <span class="smalll"><i class="bi-box-arrow-in-right me-2"></i>Login</span>
                         </span>
                     </button>
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <button class="btn rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#registerModal">
                         <span class="d-flex align-items-center">
-                            <i class="bi-person-plus-fill me-2"></i>
-                            <span class="small">signup</span>
+                            <span class="smalll"><i class="bi-person-plus-fill me-2"></i>signup</span>
                         </span>
                     </button>
                     </div>
@@ -72,7 +74,7 @@
                             aria-expanded="false"
                         >
                             <img
-                            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                            src="{{asset('img/plumber.png')}}"
                             class="rounded-circle"
                             height="35"
                             alt="Black and White Portrait of a Man"
@@ -106,7 +108,7 @@
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                    <div class="modal-header middle p-4">
                         <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">Login</h5>
                         <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -134,7 +136,7 @@
         <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                    <div class="modal-header middle p-4">
                         <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">Register</h5>
                         <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -168,6 +170,10 @@
                                 <input class="form-control" name="password" type="password"/>
                                 <label>Password</label>
                             </div>
+                            <div class="wage form-floating mb-3" style="display:none">
+                                <input class="form-control" name="price" type="number"/>
+                                <label>Price/h</label>
+                            </div>
                             <div class="mb-3">
                             <select name="city" class="form-select">
                                 <option value="" selected>Select a city</option>
@@ -181,19 +187,12 @@
                                 <option value="safi">safi</option>
                             </select>
                             </div>
-                            <div class="wage form-floating mb-3" style="display:none">
-                                <input class="form-control" name="price" type="number"/>
-                                <label>Price/h</label>
-                            </div>
-                            <div class="special mb-3 " style="display:none">
-                                <select name="speciality" class="form-control">
-                                <option value="">chooose...</option>
-                                <option value="Plumbing">Plumbing</option>
-                                <option value="Electricity">Electricity</option>
-                                <option value="Sanitary">Sanitary</option>
-                                <option value="Heating">Heating</option>
-                                <option value="Sewerage">Sewerage</option>
-                                <option value="Painting">Painting</option>
+                            <div class="special mb-3" style="display:none">
+                                <select name="speciality" class="form-select text-dark">
+                                <option value="">select a speciality</option>
+                                @foreach($specialities as $speciality)
+                                <option value="{{$speciality->name_specilaity}}">{{$speciality->name_speciality}}</option>
+                                @endforeach
                                 </select>
                             </div>
                             <div class="d-grid">
@@ -209,7 +208,7 @@
         @yield('content')
 
         <!-- Footer-->
-        <footer class="bg-black text-center py-5" style="z-index:-99">
+        <footer class="bg-black text-center py-5">
             <div class="container px-5">
                 <div class="text-white-50 small">
                     <div class="mb-2">&copy; Jobetween 2022. All Rights Reserved.</div>
@@ -221,7 +220,7 @@
                 </div>
             </div>
         </footer>
-                <script src="js/handle.js"></script>
+                <script src="{{asset('js/handle.js')}}"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>

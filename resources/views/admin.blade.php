@@ -3,18 +3,16 @@
 <section style="background-color: #f8f9fa;">
             <div class="row">
                 <!-- side bar  -->
-                <div class="col-lg-3 mx-3 ">
-                    <div class="card mb-4 bg-gradient-primary-to-secondary">
+                <div class="col-lg-3 mx-3 mt-5">
+                    <div class="card mb-4 bg-light">
                         <div class="card-body text-start">
-                            <p class="h3 text-light mb-2">Dashboard</p>
-                            <label class="text-light" for="search">Search</label>
-                            <input class="form-control mb-3" id="search" type="text" placeholder="Search..."/>
-                            <hr class="text-light mb-3">
-                            <p class="opt text-light"><i class="bi bi-grid"></i> Overview </p>
-                            <p class="opt text-light"><i class="bi bi-grid"></i> Clients</p>
-                            <p class="opt text-light"><i class="bi bi-grid"></i> Repairmen </p>
-                            <p class="opt text-light"><i class="bi bi-grid"></i> Specialities </p>
-                            <hr class="text-light mb-3">
+                            <p class="h3 text-dark mb-2">Dashboard</p>
+                            <hr class="text-dark mb-3">
+                            <p class="opt text-dark"><i class="bi bi-grid"></i> Overview </p>
+                            <p class="opt text-dark"><i class="bi bi-grid"></i> Clients</p>
+                            <p class="opt text-dark"><i class="bi bi-grid"></i> Repairmen </p>
+                            <p class="opt text-dark"><i class="bi bi-grid"></i> Specialities </p>
+                            <hr class="text-dark mb-3">
                             <a href="{{ url('signout') }}" class="btn text-dark bg-light">Logout  <i class="bi bi-box-arrow-right"></i></a>
                         </div>
                     </div>
@@ -29,14 +27,14 @@
                                 <div class="row ">
                                     <!-- clients count  -->
                                     <div class="col-xl-3 col-lg-6">
-                                        <div class="card bg-gradient-primary-to-secondary text-light">
+                                        <div class="card text-light bg-light">
                                             <div class="card-statistic-3 p-4">
                                                 <div class="mb-4">
-                                                    <h5 class="card-title mb-0">Clients</h5>
+                                                    <h5 class="card-title text-dark mb-0">Clients</h5>
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">{{$clients->count()}}</h2>
+                                                        <h2 class="d-flex text-dark align-items-center mb-0">{{$clients->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -44,14 +42,14 @@
                                     </div>
                                     <!-- Repairmen count  -->
                                     <div class="col-xl-3 col-lg-6">
-                                        <div class="card bg-gradient-primary-to-secondary text-light">
+                                        <div class="card text-light bg-light">
                                             <div class="card-statistic-3 p-4">
                                                 <div class="mb-4">
-                                                    <h5 class="card-title mb-0">Repairmen</h5>
+                                                    <h5 class="card-title text-dark mb-0">Repairmen</h5>
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">{{$repairmen->count()}}</h2>
+                                                        <h2 class="d-flex text-dark align-items-center mb-0">{{$repairmen->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,14 +57,14 @@
                                     </div>
                                     <!-- hires count  -->
                                     <div class="col-xl-3 col-lg-6">
-                                        <div class="card bg-gradient-primary-to-secondary text-light">
+                                        <div class="card text-light">
                                             <div class="card-statistic-3 p-4">
                                                 <div class="mb-4">
-                                                    <h5 class="card-title mb-0">Hires</h5>
+                                                    <h5 class="card-title text-dark mb-0">Hires</h5>
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">{{$hires->count()}}</h2>
+                                                        <h2 class="d-flex text-dark align-items-center mb-0">{{$hires->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,14 +72,14 @@
                                     </div>
                                     <!-- specialities count  -->
                                     <div class="col-xl-3 col-lg-6">
-                                        <div class="card bg-gradient-primary-to-secondary text-light">
+                                        <div class="card text-light">
                                             <div class="card-statistic-3 p-4">
                                                 <div class="mb-4">
-                                                    <h5 class="card-title mb-0">Specialities</h5>
+                                                    <h5 class="card-title text-dark mb-0">Specialities</h5>
                                                 </div>
                                                 <div class="row align-items-center mb-2 d-flex">
                                                     <div class="col-8">
-                                                        <h2 class="d-flex align-items-center mb-0">{{$specialities->count()}}</h2>
+                                                        <h2 class="d-flex text-dark align-items-center mb-0">{{$specialities->count()}}</h2>
                                                     </div>
                                                 </div>
                                             </div>

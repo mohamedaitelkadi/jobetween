@@ -1,7 +1,15 @@
 @extends('navbar')
 @Section('content')
         <!-- Mashead header-->
-        <header class="masthead">
+        <header class="masthead"> 
+            @if(session('not_logged'))
+            <div class="w-100 position-absolute">
+                <div class="alert alert-danger alert-dismissible fade show  mx-auto w-50" style="z-index:10">
+                    <strong>Error!</strong> {{session('not_logged')}}.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+            @endif
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6">
@@ -9,7 +17,6 @@
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
                             <h1 class="display-1 lh-1 mb-3">Showcase your app beautifully.</h1>
                             <p class="lead fw-normal text-muted mb-5">Launch your mobile app landing page faster with this free, open source theme from Start Bootstrap!</p>
-                            <a class="btn btn-outline-dark py-3 px-4 rounded-pill" href="">Sign up Now</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -30,12 +37,12 @@
             </div>
         </header>
         <!-- Quote/testimonial aside-->
-        <aside class="text-center bg-gradient-primary-to-secondary">
+        <aside class="middle text-center">
             <div class="container px-5">
                 <div class="row gx-5 justify-content-center">
                     <div class="col-xl-8">
                         <div class="h2 fs-1 text-white mb-4">"An intuitive solution to a common problem that we all face, wrapped up in a single app!"</div>
-                        <h2>JoBetween</h2>
+                        <h2 style="color:#FFC700">JoBetween</h2>
                     </div>
                 </div>
             </div>

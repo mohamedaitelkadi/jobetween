@@ -78,7 +78,7 @@ class UsersController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/admin');
         }
-        return redirect('/');
+        return redirect('/')->with('not_logged','your login infos are incorrect');
     }
 
 
@@ -100,23 +100,25 @@ class UsersController extends Controller
     public function client_profile(){
         $user = Auth::User();
         $hires = Hires::where('id_client',$user->id)->get();
-        
-        return view('clientprofile',['hires'=>$hires]);
+        $specialities = Specialities::all(); 
+        return view('clientprofile',['specialities'=>$specialities,'hires'=>$hires]);
     }
 
 
     public function repairman_profile($id){
         $client = Auth::User();
         $repairman = User::find($id);
+        $specialities = Specialities::all(); 
         $hires = Hires::where('id_client', $client->id)->where('id_repairman' , $id)->get();
-       return view('repairprofile',['repairman'=>$repairman,'hires'=>$hires]);   
+       return view('repairprofile',['specialities'=>$specialities,'repairman'=>$repairman,'hires'=>$hires]);   
     }
 
 
     public function personal_profile(){
         $user = Auth::User();
+        $specialities = Specialities::all(); 
         $hires = Hires::where('id_repairman',$user->id)->get();
-        return view('personalprofile',['hires'=>$hires,'user'=>$user]);
+        return view('personalprofile',['specialities'=>$specialities,'hires'=>$hires,'user'=>$user]);
     }
 
 

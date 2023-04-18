@@ -38,7 +38,7 @@
                         @if (session('failure'))
                           <div class="alert alert-danger">{{ session('failure') }}</div>
                         @endif
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn text-light" style="background-color: #3533CD">Update</button>
                       </form>
                     </div>
                   </div>
